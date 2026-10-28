@@ -1,0 +1,130 @@
+:root {
+  --hud-bg: rgb(16 18 24 / 78%);
+  --hud-border: #3a3f4b;
+  --hud-text: #f1e7c8;
+  --hud-muted: #9a957f;
+  --hud-accent: #f0d078;
+  --hud-health: #d94a3d;
+  --hud-health-bg: #3b1d1a;
+  --hud-reload: #7fb2e5;
+  --hud-error: #ff6b5b;
+  --hud-font: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #0d0f13;
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#game {
+  position: absolute;
+  inset: 0;
+  /* The aim reticle is drawn in-game. */
+  cursor: none;
+}
+
+#game canvas {
+  image-rendering: pixelated;
+}
+
+#hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font-family: var(--hud-font);
+  color: var(--hud-text);
+  font-size: 13px;
+}
+
+.hud-panel {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  min-width: 220px;
+  padding: 10px 12px;
+  background: var(--hud-bg);
+  border: 2px solid var(--hud-border);
+  display: grid;
+  gap: 8px;
+}
+
+.hud-health {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-bar {
+  height: 10px;
+  background: var(--hud-health-bg);
+  border: 1px solid #000;
+}
+
+.hud-bar-fill {
+  height: 100%;
+  background: var(--hud-health);
+}
+
+.hud-weapon {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--hud-muted);
+}
+
+.hud-weapon[data-active='true'] {
+  color: var(--hud-accent);
+}
+
+.hud-weapon[data-active='true']::before {
+  content: '▶ ';
+}
+
+.hud-weapon[data-reloading='true'] .hud-ammo {
+  color: var(--hud-reload);
+}
+
+.hud-hint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  background: var(--hud-bg);
+  color: var(--hud-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.hud-tag {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  color: var(--hud-muted);
+  font-size: 11px;
+}
+
+.hud-error {
+  position: absolute;
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: var(--hud-bg);
+  border: 2px solid var(--hud-error);
+  color: var(--hud-error);
+}

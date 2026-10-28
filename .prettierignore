@@ -1,0 +1,8 @@
+dist
+node_modules
+public
+references
+package-lock.json
+.tmp-*
+# Project docs and skills are hand-formatted.
+**/*.md
